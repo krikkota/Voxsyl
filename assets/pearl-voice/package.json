@@ -1,0 +1,8 @@
+{
+  "name": "pearl-voice",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": "./pearl-voice.js",
+  "types": "./pearl-voice.d.ts"
+}

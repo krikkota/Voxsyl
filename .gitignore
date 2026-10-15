@@ -1,0 +1,18 @@
+# Local model weights, dependency runtimes and generated benchmark audio.
+.cache/
+.local/
+.pnpm-store/
+.venv-bench/
+benchmarks/asr-runner/target/
+__pycache__/
+*.pyc
+.DS_Store
+app/node_modules/
+app/dist/
+app/src-tauri/target/
+# Personal recordings stay local and are never committed.
+benchmarks/private-audio/
+releases/
+outputs/
+.impeccable/
+app/src-tauri/gen/

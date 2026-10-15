@@ -1,0 +1,13 @@
+[package]
+name = "voxsyl-asr-bench"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+# Match the ONNX engine used by Handy v0.9.8.
+transcribe-rs = { version = "=0.3.8", default-features = false, features = ["onnx"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+hound = "3.5"
+libc = "0.2"

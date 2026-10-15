@@ -1,0 +1,30 @@
+{
+  "savedOn": "2026-10-13",
+  "source": "Компонент из этой беседы, выбранный пользователем вариант «Перламутр».",
+  "preset": {
+    "shapeSpeed": 2.5,
+    "energy": 1,
+    "reactiveShape": true,
+    "glow": 0.65
+  },
+  "files": {
+    "pearl-voice.js": {
+      "sha256": "dd4b4e0898793e9442ab8410ade90278eff87b224ae1abdccb1b35a6557a55bf"
+    },
+    "pearl-voice.d.ts": {
+      "sha256": "0100ca99a603fbe41e124da49a113d6380fd8f42fed8b5a94203a268fcef65fd"
+    },
+    "preset.json": {
+      "sha256": "aabfcf609ccdfdfc0bc6469cfa91eee6dddda930b89a096987bb945d21258e13"
+    },
+    "demo.html": {
+      "sha256": "d0396df9b6d3fabd6b92b5b80491f567f90cad42d6172ea1d3b2de0037436bc2"
+    },
+    "preview.png": {
+      "sha256": "9972c3de28f09ea370c0acf6e1d8e7aa85e636a82788006fbe61785f370e1a02"
+    },
+    "package.json": {
+      "sha256": "eb4a633b96599f3a4859c590008959b51fce7767ff374398366f14f35c5fc99e"
+    }
+  }
+}

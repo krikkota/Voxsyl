@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "version": "pearl-switch-v3-gentle",
+  "selected_date": "2026-10-14",
+  "approved_by": "user in project conversation",
+  "status": "integrated_in_native_prototype_not_live_validated",
+  "activation": {
+    "file": "voxsyl-activate-v3-gentle.wav",
+    "sha256": "fd585658ff4fae4d077c0107b56bef801a779143aa1a087faa0acf6723f17f9a",
+    "duration_ms": 350.0,
+    "peak_dbfs": -12.0,
+    "rms_dbfs": -23.555,
+    "dc_offset": [
+      -6.212506975446429e-07,
+      -6.739298502604167e-07
+    ],
+    "energy_above_8khz_ratio": 5.807724731187446e-09,
+    "first_last_sample_zero": true,
+    "clipped_samples": 0
+  },
+  "deactivation": {
+    "file": "voxsyl-deactivate-v3-gentle.wav",
+    "sha256": "238ac4370883270695e4b0e79bc78f2858a22c0aa13742f888d6b793614d0a05",
+    "duration_ms": 320.0,
+    "peak_dbfs": -12.0,
+    "rms_dbfs": -24.305,
+    "dc_offset": [
+      -4.3710072835286455e-08,
+      -5.7617823282877605e-08
+    ],
+    "energy_above_8khz_ratio": 6.878442295070143e-09,
+    "first_last_sample_zero": true,
+    "clipped_samples": 0
+  },
+  "provenance": "provenance-v3-gentle.json",
+  "notes": "Audition sequence and previous versions are not product cues. Selected WAVs are bundled and wired to native start/stop events. Runtime volume, live timing and speaker contamination remain to be verified."
+}

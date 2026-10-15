@@ -1,0 +1,40 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Voxsyl",
+  "version": "0.1.1",
+  "identifier": "org.voxsyl.prototype",
+  "build": {
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "macOSPrivateApi": true,
+    "windows": [],
+    "security": {
+      "csp": "default-src 'self'; connect-src ipc: http://ipc.localhost; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "app"
+    ],
+    "icon": [
+      "icons/icon.png",
+      "icons/icon.icns"
+    ],
+    "createUpdaterArtifacts": false,
+    "resources": {
+      "resources/sounds/": "sounds/",
+      "../../.cache/benchmark/runtime/llama/llama-b11429/": "runtime/llama/",
+      "../../.cache/benchmark/models/gigaam/": "models/gigaam/",
+      "../../licenses/": "licenses/",
+      "../../.cache/benchmark/runtime/ort/onnxruntime-osx-arm64-1.24.2/lib/libonnxruntime.1.24.2.dylib": "runtime/ort/lib/libonnxruntime.1.24.2.dylib",
+      "../../assets/fonts/onest/OFL.txt": "licenses/Onest-OFL-1.1.txt"
+    },
+    "macOS": {
+      "minimumSystemVersion": "14.0",
+      "signingIdentity": "-",
+      "hardenedRuntime": false
+    }
+  }
+}

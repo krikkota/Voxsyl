@@ -1,0 +1,311 @@
+/** Перламутровый индикатор. Входные volume, energy и glow нормированы от 0 до 1. */
+export const PEARL_PRESET = Object.freeze({
+  label: 'Перламутр', material: 'pearl', volume: 0.09, energy: 1,
+  shapeSpeed: 2.5, reactiveShape: true, glow: 0.65, theme: 'auto', paused: false,
+});
+
+const PALETTES = {
+  "light": {
+    "surface": [
+      23,
+      27,
+      32
+    ],
+    "ink": [
+      248,
+      252,
+      250
+    ],
+    "shadow": [
+      9,
+      9,
+      26
+    ],
+    "materials": {
+      "pearl": {
+        "kind": "pearl",
+        "colors": [
+          [
+            132,
+            239,
+            208
+          ],
+          [
+            54,
+            174,
+            181
+          ],
+          [
+            217,
+            248,
+            235
+          ],
+          [
+            163,
+            178,
+            212
+          ],
+          [
+            247,
+            234,
+            212
+          ]
+        ]
+      }
+    }
+  },
+  "dark": {
+    "surface": [
+      17,
+      22,
+      28
+    ],
+    "ink": [
+      248,
+      252,
+      250
+    ],
+    "shadow": [
+      0,
+      0,
+      9
+    ],
+    "materials": {
+      "pearl": {
+        "kind": "pearl",
+        "colors": [
+          [
+            147,
+            242,
+            216
+          ],
+          [
+            73,
+            190,
+            199
+          ],
+          [
+            224,
+            252,
+            243
+          ],
+          [
+            174,
+            189,
+            221
+          ],
+          [
+            255,
+            240,
+            217
+          ]
+        ]
+      }
+    }
+  }
+};
+function rgba(color, alpha = 1) { return 'rgba(' + color.join(',') + ',' + Math.max(0, Math.min(1, alpha)) + ')'; }
+  function light(ctx, x, y, radius, color, opacity) {
+    const gradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
+    gradient.addColorStop(0, rgba(color, opacity)); gradient.addColorStop(.4, rgba(color, opacity * .65)); gradient.addColorStop(1, rgba(color, 0));
+    ctx.beginPath(); ctx.arc(x, y, radius, 0, Math.PI * 2); ctx.fillStyle = gradient; ctx.fill();
+  }
+  function shapeRate(volume, energy, speed, reactive) { return speed * (reactive ? .32 + volume * 1.05 + energy * .07 : .76); }
+  function softContour(ctx, r, shapeTime, volume) {
+    ctx.beginPath();
+    for (let i = 0; i <= 144; i++) {
+      const angle = i / 144 * Math.PI * 2;
+      const shape = 1 + (.025 + volume * .025) * Math.cos(angle * 3 + shapeTime)
+        + .016 * Math.sin(angle * 2 - shapeTime * .95) + .009 * Math.sin(angle + shapeTime * .76);
+      const x = Math.cos(angle) * r * shape, y = Math.sin(angle) * r * shape * .98;
+      if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y);
+    }
+    ctx.closePath();
+  }
+  function oldRibbon(ctx, r, time, volume, energy, index, colors, opacity) {
+    const angle = [-.52, .38][index] + Math.sin(time * .28 + index) * .18;
+    const points = [], extent = r * 1.45;
+    ctx.save(); ctx.rotate(angle);
+    for (let i = 0; i <= 72; i++) {
+      const x = (i / 72 * 2 - 1) * extent, u = x / r, envelope = Math.exp(-u * u * .95);
+      const center = Math.sin(u * 2.2 + time * .65 + index * 1.7) * r * (.25 + energy * .38) * envelope;
+      const thickness = r * (.055 + volume * .15) * (1.1 + Math.sin(u * 2.8 - time + index) * .58) * envelope;
+      points.push({ x, upper: center - thickness, lower: center + thickness });
+    }
+    const gradient = ctx.createLinearGradient(-extent, -r * .4, extent, r * .4);
+    gradient.addColorStop(0, rgba(colors[index], 0)); gradient.addColorStop(.18, rgba(colors[index], opacity));
+    gradient.addColorStop(.52, rgba(colors[index + 1], opacity)); gradient.addColorStop(.85, rgba(colors[index + 2], opacity)); gradient.addColorStop(1, rgba(colors[index + 2], 0));
+    ctx.beginPath(); points.forEach((point, i) => i ? ctx.lineTo(point.x, point.upper) : ctx.moveTo(point.x, point.upper));
+    [...points].reverse().forEach(point => ctx.lineTo(point.x, point.lower)); ctx.closePath(); ctx.fillStyle = gradient; ctx.fill();
+    ctx.beginPath(); points.forEach((point, i) => i ? ctx.lineTo(point.x, point.upper) : ctx.moveTo(point.x, point.upper));
+    ctx.strokeStyle = rgba(colors[index + 1], opacity * .65); ctx.lineWidth = .9; ctx.stroke(); ctx.restore();
+  }
+  function luminousFold(ctx, r, time, volume, energy, material, index, opacity) {
+    const points = [], extent = r * 1.3;
+    const angle = material.kind === 'pearl' ? .97 + Math.sin(time * .25) * .13 : -.29 + index * .16;
+    ctx.save(); ctx.rotate(angle);
+    for (let i = 0; i <= 96; i++) {
+      const x = (i / 96 * 2 - 1) * extent, u = x / r;
+      const envelope = Math.exp(-u * u * .7);
+      const center = (Math.sin(u * 1.85 + time * .43 + index * .9) * (.22 + energy * .11) + Math.sin(u * 3.1 - time * .31) * .07) * r * envelope;
+      const thickness = r * (.075 + volume * .13) * (.72 + Math.sin(u * 1.8 - time * .35 + index) * .28) * envelope;
+      points.push({ x, upper: center - thickness, lower: center + thickness });
+    }
+    const gradient = ctx.createLinearGradient(0, -r * .62, 0, r * .62);
+    gradient.addColorStop(0, rgba(material.colors[1], 0)); gradient.addColorStop(.28, rgba(material.colors[0], opacity * .6));
+    gradient.addColorStop(.46, rgba(material.colors[2], opacity)); gradient.addColorStop(.6, rgba(material.colors[4], opacity * .75)); gradient.addColorStop(1, rgba(material.colors[1], 0));
+    ctx.beginPath(); points.forEach((point, i) => i ? ctx.lineTo(point.x, point.upper) : ctx.moveTo(point.x, point.upper));
+    [...points].reverse().forEach(point => ctx.lineTo(point.x, point.lower)); ctx.closePath(); ctx.fillStyle = gradient; ctx.fill();
+    ctx.beginPath(); points.forEach((point, i) => i ? ctx.lineTo(point.x, point.upper) : ctx.moveTo(point.x, point.upper));
+    ctx.lineWidth = .85; ctx.strokeStyle = rgba(material.colors[2], opacity * .38); ctx.stroke(); ctx.restore();
+  }
+  function paintTuned(ctx, width, height, time, volume, energy, p, glow, shapeTime, style) {
+    ctx.clearRect(0, 0, width, height);
+    const material = p.materials[style];
+    const r = (54 + Math.pow(volume, .65) * 20) * (1 + Math.sin(time * .65) * .008);
+    const contour = () => softContour(ctx, r, shapeTime, volume);
+    const colors = material.colors;
+    ctx.save(); ctx.translate(width / 2, height / 2);
+    light(ctx, -r * .18, r * .12, r * 1.38, colors[0], (.025 + volume * .08) * glow);
+    light(ctx, r * .22, -r * .12, r * 1.32, colors[3], (.025 + volume * .07) * glow);
+    contour(); ctx.shadowColor = rgba(p.shadow, .22); ctx.shadowBlur = 16; ctx.shadowOffsetY = 6;
+    ctx.fillStyle = rgba(p.surface); ctx.fill(); ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
+    ctx.save(); contour(); ctx.clip(); ctx.globalCompositeOperation = 'screen';
+    const locations = [[-.5, -.45], [.53, -.09], [-.16, .52], [.34, .6]];
+    const cloudColors = [colors[0], colors[3], colors[1], colors[4]];
+    locations.forEach((point, i) => {
+      const drift = time * .38 + i * 1.5;
+      light(ctx, (point[0] + Math.sin(drift) * .12) * r, (point[1] + Math.cos(drift * .8) * .13) * r, r * .96, cloudColors[i], .65 + volume * .24);
+    });
+    if (style === 'previous') {
+      ctx.save(); ctx.filter = 'blur(' + (7 + glow * 4).toFixed(1) + 'px)';
+      oldRibbon(ctx, r, time * .62 + 1.8, volume, energy, 0, colors, .65);
+      oldRibbon(ctx, r, time * .62 + .6, volume, energy, 1, colors, .52); ctx.restore();
+      oldRibbon(ctx, r, time * .62 + 1.8, volume * .5, energy, 0, colors, .26);
+    } else {
+      ctx.save(); ctx.filter = 'blur(' + (6 + glow * 4).toFixed(1) + 'px)';
+      luminousFold(ctx, r, time, volume, energy, material, 0, .64 + volume * .13);
+      if (style === 'amber') luminousFold(ctx, r, time + 1.1, volume * .65, energy, material, 1, .36); ctx.restore();
+      luminousFold(ctx, r, time, volume * .65, energy, material, 0, .31 + volume * .12);
+    }
+    light(ctx, Math.sin(time * .48) * r * .17, Math.cos(time * .32) * r * .16, r * .65, p.ink, .14 + volume * .26);
+    ctx.globalCompositeOperation = 'source-over';
+    const edge = ctx.createRadialGradient(-r * .12, -r * .1, r * .47, 0, 0, r * 1.1);
+    edge.addColorStop(0, rgba(p.surface, 0)); edge.addColorStop(.66, rgba(p.surface, .07)); edge.addColorStop(1, rgba(p.surface, .58));
+    ctx.fillStyle = edge; contour(); ctx.fill(); ctx.globalCompositeOperation = 'screen';
+    const reflection = ctx.createLinearGradient(-r, -r, r * .5, r);
+    reflection.addColorStop(0, rgba(p.ink, .37)); reflection.addColorStop(.38, rgba(p.ink, 0)); reflection.addColorStop(.8, rgba(colors[0], 0)); reflection.addColorStop(1, rgba(colors[0], .2));
+    ctx.strokeStyle = reflection; ctx.lineWidth = .8; contour(); ctx.stroke(); ctx.restore(); ctx.restore();
+  }
+
+const controllers = new WeakMap();
+const clamp = (value, min, max, fallback) => typeof value === 'number' && Number.isFinite(value) ? Math.min(max, Math.max(min, value)) : fallback;
+
+/** Рендер одного кадра без DOM. Размеры width/height задаются в логических пикселях. */
+export function drawPearlFrame(ctx, frame = {}) {
+  if (!ctx || typeof ctx.save !== 'function') throw new TypeError('Нужен CanvasRenderingContext2D.');
+  const width = clamp(frame.width, 1, 16384, ctx.canvas?.width || 320);
+  const height = clamp(frame.height, 1, 16384, ctx.canvas?.height || 210);
+  const scale = Math.min(width / 210, height / 210);
+  const theme = frame.theme === 'dark' ? 'dark' : 'light';
+  const volume = clamp(frame.volume, 0, 1, PEARL_PRESET.volume);
+  const energy = clamp(frame.energy, 0, 1, PEARL_PRESET.energy);
+  const glow = clamp(frame.glow, 0, 1, PEARL_PRESET.glow);
+  const time = clamp(frame.time, -1e9, 1e9, 1.6);
+  const shapeTime = clamp(frame.shapePhase, -1e9, 1e9, 0.336);
+  ctx.save(); ctx.scale(scale, scale);
+  paintTuned(ctx, width / scale, height / scale, time, volume, energy, PALETTES[theme], glow, shapeTime, 'pearl');
+  ctx.restore();
+}
+
+/** Подключает анимацию к существующему canvas. */
+export function createPearlVoice(canvas, options = {}) {
+  if (!canvas || typeof canvas.getContext !== 'function') throw new TypeError('Нужен элемент canvas.');
+  const doc = canvas.ownerDocument;
+  const view = doc?.defaultView;
+  if (!view || typeof view.requestAnimationFrame !== 'function') throw new TypeError('Для живой анимации нужен canvas в браузере или WebView.');
+  const ctx = canvas.getContext('2d');
+  if (!ctx) throw new Error('Canvas 2D недоступен.');
+  controllers.get(canvas)?.destroy();
+
+  const state = { ...PEARL_PRESET };
+  let destroyed = false, onscreen = true, frameId = 0, last = 0;
+  let time = 1.6, shapePhase = 0.336, amplitude = state.volume, drive = state.energy;
+  const darkMedia = view.matchMedia('(prefers-color-scheme: dark)');
+  const motionMedia = view.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function update(next) {
+    if (!next || typeof next !== 'object') return;
+    for (const key of ['volume', 'energy', 'glow']) if (key in next) state[key] = clamp(next[key], 0, 1, state[key]);
+    if ('shapeSpeed' in next) state.shapeSpeed = clamp(next.shapeSpeed, 0.5, 3, state.shapeSpeed);
+    for (const key of ['reactiveShape', 'paused']) if (typeof next[key] === 'boolean') state[key] = next[key];
+    if (['auto', 'light', 'dark'].includes(next.theme)) state.theme = next.theme;
+  }
+  update(options); amplitude = state.volume; drive = state.energy;
+
+  function render() {
+    if (destroyed) return;
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width <= 0 || rect.height <= 0) return;
+    const dpr = Math.min(2, view.devicePixelRatio || 1);
+    const width = Math.round(rect.width * dpr), height = Math.round(rect.height * dpr);
+    if (canvas.width !== width || canvas.height !== height) { canvas.width = width; canvas.height = height; }
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const theme = state.theme === 'auto' ? (darkMedia.matches ? 'dark' : 'light') : state.theme;
+    drawPearlFrame(ctx, { width: rect.width, height: rect.height, time, shapePhase, volume: amplitude, energy: drive, glow: state.glow, theme });
+  }
+  function canRun() { return !destroyed && !state.paused && onscreen && !doc.hidden && !motionMedia.matches; }
+  function tick(now) {
+    frameId = 0;
+    if (!canRun()) { last = 0; return; }
+    const dt = Math.min(0.05, Math.max(0.001, (now - (last || now - 16)) / 1000)); last = now;
+    const attack = state.volume > amplitude ? 0.065 : 0.25;
+    amplitude += (state.volume - amplitude) * (1 - Math.exp(-dt / attack));
+    drive += (state.energy - drive) * (1 - Math.exp(-dt / 0.18));
+    time += dt * (0.45 + drive * 1.5) * (0.3 + amplitude * 0.7);
+    shapePhase += dt * shapeRate(amplitude, drive, state.shapeSpeed, state.reactiveShape);
+    render(); if (canRun()) frameId = view.requestAnimationFrame(tick);
+  }
+  function sync() {
+    if (destroyed) return;
+    if (canRun()) {
+      if (!frameId) { last = 0; frameId = view.requestAnimationFrame(tick); }
+    } else {
+      view.cancelAnimationFrame(frameId); frameId = 0; last = 0;
+      amplitude = state.volume; drive = state.energy; render();
+    }
+  }
+  function onAppearance() { render(); sync(); }
+  function bindMedia(media, callback) {
+    if (typeof media.addEventListener === 'function') { media.addEventListener('change', callback); return () => media.removeEventListener('change', callback); }
+    media.addListener(callback); return () => media.removeListener(callback);
+  }
+  const unbindDark = bindMedia(darkMedia, onAppearance);
+  const unbindMotion = bindMedia(motionMedia, sync);
+  doc.addEventListener('visibilitychange', sync);
+  const resize = typeof view.ResizeObserver === 'function' ? new view.ResizeObserver(render) : null;
+  resize?.observe(canvas);
+  if (!resize) view.addEventListener('resize', render);
+  const intersection = typeof view.IntersectionObserver === 'function' ? new view.IntersectionObserver(entries => { onscreen = entries[0].isIntersecting; sync(); }) : null;
+  intersection?.observe(canvas);
+
+  const controller = {
+    setVolume(value) { if (!destroyed) { update({ volume: value }); sync(); } },
+    setEnergy(value) { if (!destroyed) { update({ energy: value }); sync(); } },
+    setOptions(next) { if (!destroyed) { update(next); sync(); } },
+    getOptions() { return { ...state }; },
+    pause() { if (!destroyed) { state.paused = true; sync(); } },
+    resume() { if (!destroyed) { state.paused = false; sync(); } },
+    destroy() {
+      if (destroyed) return;
+      destroyed = true; view.cancelAnimationFrame(frameId); frameId = 0;
+      resize?.disconnect(); intersection?.disconnect(); unbindDark(); unbindMotion();
+      doc.removeEventListener('visibilitychange', sync);
+      if (!resize) view.removeEventListener('resize', render);
+      if (controllers.get(canvas) === controller) controllers.delete(canvas);
+    },
+  };
+  controllers.set(canvas, controller); render(); sync();
+  return controller;
+}
+

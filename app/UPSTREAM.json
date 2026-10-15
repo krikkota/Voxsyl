@@ -1,0 +1,56 @@
+{
+  "upstream": "https://github.com/cjpais/Handy",
+  "commit": "14f6f0d31cb22a4268acfbddba3052820fd0a06e",
+  "license": "../../licenses/Handy-MIT.txt",
+  "scope": "Focused macOS derivative; Handy recording, resampling, visualization and lightweight VAD modules, not a full upstream checkout.",
+  "files": [
+    {
+      "path": "src-tauri/src/audio_toolkit/audio/recorder.rs",
+      "upstream_sha256": "0d5d1d9473619ec0d5ad28570de52d7d1a563047e218fc995e652d07d35aa1bc"
+    },
+    {
+      "path": "src-tauri/src/audio_toolkit/audio/resampler.rs",
+      "upstream_sha256": "ad534d657ed38b18acb086a6b6283afb4ea93739c616a0230e41bfbf694330ba"
+    },
+    {
+      "path": "src-tauri/src/audio_toolkit/audio/visualizer.rs",
+      "upstream_sha256": "9bf6f3dd9949a21d61fc36be14b83159bd34fa0a80b8d587eac8ddf6dbbcc8b2"
+    },
+    {
+      "path": "src-tauri/src/audio_toolkit/audio/device.rs",
+      "upstream_sha256": "149bb03ae12f8f2ef3612c811b1ba01ef72887f7cf578ebb76965de6d1f232d8"
+    },
+    {
+      "path": "src-tauri/src/audio_toolkit/audio/utils.rs",
+      "upstream_sha256": "d69e310a8dc7edc8d26b8edfce5ea9325172407640537f6b6fc06228acf492de"
+    },
+    {
+      "path": "src-tauri/src/audio_toolkit/audio/mod.rs",
+      "upstream_sha256": "acf08256d94d9f6edeba8f2e141896160b358ea422224ac99d9e67a6f2cf46d0"
+    },
+    {
+      "path": "src-tauri/src/audio_toolkit/constants.rs",
+      "upstream_sha256": "9caebc5dd58c76a6fd4ef215dfbd1390fe264d67cd89e195e970f0fb00503423"
+    },
+    {
+      "path": "src-tauri/src/audio_toolkit/utils.rs",
+      "upstream_sha256": "598d1355c61824a877db753c09861f3ffaf73bcd8f0039ee79dadaca93bab27b"
+    },
+    {
+      "path": "src-tauri/src/audio_toolkit/vad/mod.rs",
+      "upstream_sha256": "a67282a3d97cf60fa682a547814688e7a218250999c4f8b393ed3ff3d92408aa"
+    },
+    {
+      "path": "src-tauri/src/audio_toolkit/vad/earshot.rs",
+      "upstream_sha256": "161e076604753e5b2896fa08394e738b09e8f717ffca8322608c71f06b46cc74"
+    },
+    {
+      "path": "src-tauri/src/audio_toolkit/vad/smoothed.rs",
+      "upstream_sha256": "531dee2795f7ca617a4a4da675d226838e1d97ad72f74352996f4ed95b7e1a97"
+    },
+    {
+      "path": "src-tauri/src/audio_toolkit/audio/recorder/tests.rs",
+      "upstream_sha256": "905329f281270a069da5f29cc98fc80df4f1fd22c66f8629262dd075465de886"
+    }
+  ]
+}

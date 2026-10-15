@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "artifacts": [
+    {
+      "id": "vikhr-q4",
+      "group": "core",
+      "kind": "model",
+      "path": "models/Vikhr-Qwen-2.5-1.5b-Instruct-Q4_K_M.gguf",
+      "url": "https://huggingface.co/Vikhrmodels/Vikhr-Qwen-2.5-1.5B-Instruct-GGUF/resolve/f3d0a36f09a910b9f50ae1bf388d147aca0b75d4/Vikhr-Qwen-2.5-1.5b-Instruct-Q4_K_M.gguf",
+      "sha256": "d82b16244a33dbbde4742e38e42b2b3d74dd883f4b8ff4ae53eca29aabf60662",
+      "bytes": 985700992,
+      "license_declared": "Apache-2.0",
+      "publisher": "Vikhrmodels",
+      "revision": "f3d0a36f09a910b9f50ae1bf388d147aca0b75d4"
+    },
+    {
+      "id": "gigaam",
+      "group": "core",
+      "kind": "archive",
+      "path": "models/giga-am-v3-int8.tar.gz",
+      "extract_to": "models/gigaam",
+      "url": "https://blob.handy.computer/giga-am-v3-int8.tar.gz",
+      "sha256": "d872462268430db140b69b72e0fc4b787b194c1dbe51b58de39444d55b6da45b",
+      "bytes": 159235143,
+      "license_declared": "MIT (GigaAM upstream; conversion provenance remains to audit before redistribution)",
+      "publisher": "Handy model package"
+    },
+    {
+      "id": "llama",
+      "group": "core",
+      "kind": "archive",
+      "path": "runtime/llama-b11429-bin-macos-arm64.tar.gz",
+      "extract_to": "runtime/llama",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/download/b11429/llama-b11429-bin-macos-arm64.tar.gz",
+      "sha256": "740288ec6887be94280a5dfa25b5e23a78285cab104519e6c7e218904ee82459",
+      "bytes": 11971406,
+      "license_declared": "MIT",
+      "publisher": "ggml-org",
+      "version": "b11429 / v0.6.0",
+      "binary_min_macos": "13.3"
+    },
+    {
+      "id": "ort",
+      "group": "core",
+      "kind": "archive",
+      "path": "runtime/onnxruntime-osx-arm64-1.24.2.tgz",
+      "extract_to": "runtime/ort",
+      "url": "https://github.com/microsoft/onnxruntime/releases/download/v1.24.2/onnxruntime-osx-arm64-1.24.2.tgz",
+      "sha256": "0af4fa503e8ea285245b47ee42d0a7461b8156a81270857da0c1d4ecf858abde",
+      "bytes": 31604221,
+      "license_declared": "MIT plus distributed ThirdPartyNotices",
+      "publisher": "Microsoft",
+      "version": "1.24.2",
+      "binary_min_macos": "14.0"
+    },
+    {
+      "id": "vikhr-q8",
+      "group": "comparison",
+      "kind": "model",
+      "path": "models/Vikhr-Qwen-2.5-1.5b-Instruct-Q8_0.gguf",
+      "url": "https://huggingface.co/Vikhrmodels/Vikhr-Qwen-2.5-1.5B-Instruct-GGUF/resolve/f3d0a36f09a910b9f50ae1bf388d147aca0b75d4/Vikhr-Qwen-2.5-1.5b-Instruct-Q8_0.gguf",
+      "sha256": "bf39c38f35e376c14137411f2730a56873b5aabc38e9350f2f303c7a02855a96",
+      "bytes": 1646124704,
+      "license_declared": "Apache-2.0",
+      "publisher": "Vikhrmodels",
+      "revision": "f3d0a36f09a910b9f50ae1bf388d147aca0b75d4"
+    },
+    {
+      "id": "qwen3-17",
+      "group": "comparison",
+      "kind": "model",
+      "path": "models/Qwen3-1.7B-Q8_0.gguf",
+      "url": "https://huggingface.co/Qwen/Qwen3-1.7B-GGUF/resolve/90862c4b9d2787eaed51d12237eafdfe7c5f6077/Qwen3-1.7B-Q8_0.gguf",
+      "sha256": "061b54daade076b5d3362dac252678d17da8c68f07560be70818cace6590cb1a",
+      "bytes": 1834426016,
+      "license_declared": "Apache-2.0",
+      "publisher": "Qwen",
+      "revision": "90862c4b9d2787eaed51d12237eafdfe7c5f6077"
+    },
+    {
+      "id": "qwen35-2",
+      "group": "comparison",
+      "kind": "model",
+      "path": "models/Qwen3.5-2B-Q4_K_M.gguf",
+      "url": "https://huggingface.co/unsloth/Qwen3.5-2B-GGUF/resolve/f6d5376be1edb4d416d56da11e5397a961aca8ae/Qwen3.5-2B-Q4_K_M.gguf",
+      "sha256": "aaf42c8b7c3cab2bf3d69c355048d4a0ee9973d48f16c731c0520ee914699223",
+      "bytes": 1280835840,
+      "license_declared": "Apache-2.0",
+      "publisher": "Unsloth quantization of Qwen",
+      "revision": "f6d5376be1edb4d416d56da11e5397a961aca8ae",
+      "base_revision": "15852e8c16360a2fea060d615a32b45270f8a8fc"
+    },
+    {
+      "id": "qwen3-4",
+      "group": "comparison",
+      "kind": "model",
+      "path": "models/Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
+      "url": "https://huggingface.co/unsloth/Qwen3-4B-Instruct-2507-GGUF/resolve/a06e946bb6b655725eafa393f4a9745d460374c9/Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
+      "sha256": "3605803b982cb64aead44f6c1b2ae36e3acdb41d8e46c8a94c6533bc4c67e597",
+      "bytes": 2497281120,
+      "license_declared": "Apache-2.0",
+      "publisher": "Unsloth quantization of Qwen",
+      "revision": "a06e946bb6b655725eafa393f4a9745d460374c9",
+      "base_revision": "cdbee75f17c01a7cc42f958dc650907174af0554"
+    },
+    {
+      "id": "qwen35-4",
+      "group": "comparison",
+      "kind": "model",
+      "path": "models/Qwen3.5-4B-Q4_K_M.gguf",
+      "url": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/e87f176479d0855a907a41277aca2f8ee7a09523/Qwen3.5-4B-Q4_K_M.gguf",
+      "sha256": "00fe7986ff5f6b463e62455821146049db6f9313603938a70800d1fb69ef11a4",
+      "bytes": 2740937888,
+      "license_declared": "apache-2.0",
+      "publisher": "Unsloth quantization of Qwen",
+      "revision": "e87f176479d0855a907a41277aca2f8ee7a09523",
+      "base_repo": "Qwen/Qwen3.5-4B",
+      "base_repo_revision_observed": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "conversion_base_revision_verified": false
+    }
+  ]
+}

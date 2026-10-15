@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "name": "Перламутр",
+  "savedOn": "2026-10-13",
+  "material": "pearl",
+  "shapeSpeed": 2.5,
+  "energy": 1,
+  "reactiveShape": true,
+  "glow": 0.65,
+  "previewVolume": 0.09,
+  "theme": "auto",
+  "inputRange": [
+    0,
+    1
+  ],
+  "palettes": {
+    "light": {
+      "surface": "#171b20",
+      "ink": "#f8fcfa",
+      "shadow": "#09091a",
+      "colors": {
+        "mint": "#84efd0",
+        "teal": "#36aeb5",
+        "ice": "#d9f8eb",
+        "lilac": "#a3b2d4",
+        "cream": "#f7ead4"
+      }
+    },
+    "dark": {
+      "surface": "#11161c",
+      "ink": "#f8fcfa",
+      "shadow": "#000009",
+      "colors": {
+        "mint": "#93f2d8",
+        "teal": "#49bec7",
+        "ice": "#e0fcf3",
+        "lilac": "#aebddd",
+        "cream": "#fff0d9"
+      }
+    }
+  },
+  "provenance": "Выбранный пользователем вариант из чата. Рисование перенесено из voice-contour-tuned.html."
+}

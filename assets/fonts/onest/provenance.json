@@ -1,0 +1,27 @@
+{
+  "family": "Onest",
+  "license": "SIL Open Font License 1.1",
+  "source": "https://fonts.googleapis.com/css2?family=Onest:wght@400;500&display=swap",
+  "licenseSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/onest/OFL.txt",
+  "downloaded": "2026-10-13",
+  "files": [
+    {
+      "file": "Onest-Regular.ttf",
+      "source": "https://fonts.gstatic.com/s/onest/v11/gNMZW3F-SZuj7zOT0IfSjTS16cPh9R-Zsg.ttf",
+      "sha256": "5d27bd7fe4b79e94bbe64e7eed75a2ab9921dd603b2cf02ceb9a19150de48f2c",
+      "bytes": 90296
+    },
+    {
+      "file": "Onest-Medium.ttf",
+      "source": "https://fonts.gstatic.com/s/onest/v11/gNMZW3F-SZuj7zOT0IfSjTS16cPhxx-Zsg.ttf",
+      "sha256": "24744bba5ddd417b44ab201a5eae234ba3f1bacfc56d552e51799e5e3eec26c4",
+      "bytes": 90544
+    },
+    {
+      "file": "OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/onest/OFL.txt",
+      "sha256": "071195d8806e226faeee60259c28ca67b458227af5195a73f5cfcab06e3003bc",
+      "bytes": 4384
+    }
+  ]
+}

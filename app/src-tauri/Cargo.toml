@@ -1,0 +1,45 @@
+[package]
+name = "voxsyl"
+version = "0.1.1"
+edition = "2021"
+description = "Local macOS dictation prototype derived from Handy"
+
+[build-dependencies]
+tauri-build = { version = "=2.6.3", features = [] }
+
+[dependencies]
+tauri = { version = "=2.11.5", features = ["tray-icon", "macos-private-api"] }
+tauri-nspanel = { git = "https://github.com/ahkohd/tauri-nspanel", rev = "da9c9a8d4eb7f0524a2508988df1a7d9585b4904" }
+tauri-plugin-single-instance = "=2.3.2"
+# Keep the compatible Tauri family from Handy's pinned lockfile. Mixing the
+# 2.11 app API with newer 2.12 runtime internals fails in Tauri itself.
+tauri-utils = "=2.9.3"
+tauri-runtime = "=2.11.3"
+tauri-runtime-wry = "=2.11.4"
+tauri-codegen = "=2.6.3"
+tauri-macros = "=2.6.3"
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+handy-keys = "=0.3.4"
+cpal = "=0.16.0"
+rtrb = "0.4"
+rubato = "=0.16.2"
+rustfft = "6.4"
+earshot = "1.2.2"
+anyhow = "1"
+log = "0.4"
+hound = "3.5"
+transcribe-rs = { version = "=0.3.8", default-features = false, features = ["onnx"] }
+objc2 = "0.6"
+objc2-foundation = "0.3"
+objc2-app-kit = { version = "0.3", features = ["NSPasteboard", "NSWorkspace", "NSRunningApplication"] }
+enigo = "=0.6.1"
+regex = "1"
+sha2 = "=0.10.9"
+
+[profile.release]
+strip = true
+
+# Hash multi-gigabyte local weights without debug-build compression overhead.
+[profile.dev.package.sha2]
+opt-level = 3

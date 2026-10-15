@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "version": "pearl-switch-v2-warm",
+  "created": "2026-10-14",
+  "project": "Voxsyl",
+  "status": "candidate_for_user_audition_not_approved",
+  "feedback": "User rejected v1 and requested a kinder sound. This revision uses lower, harmonic tones, gentler attacks and a warmer major-third motif.",
+  "source": "Original procedural synthesis authored in this project conversation",
+  "generator": "generate_warm.py",
+  "generator_sha256": "66e582707fa59955dfdb519293962be16f5311ad123d3d877d64bae8aab9be87",
+  "helper": "generate.py (WAV writer, sample rate and smoothstep only)",
+  "helper_sha256": "c0b02a903e3136465c4592108da57a45871cca03a6efc63a870f141bbaddcfae",
+  "generation_dependencies": {
+    "python": "3",
+    "numpy": "2.3.5"
+  },
+  "external_samples": [],
+  "third_party_audio": false,
+  "format": {
+    "container": "WAV",
+    "encoding": "PCM signed 16-bit little-endian",
+    "sample_rate": 48000,
+    "channels": 2
+  },
+  "uniqueness": "Designed from scratch for Voxsyl; global acoustic uniqueness is not guaranteed.",
+  "own_asset_license": "Pending the project's own-code and asset license decision; no external audio license applies.",
+  "files": [
+    {
+      "file": "voxsyl-activate-v2-warm.wav",
+      "sha256": "0a9b249a055b0cdbbe593b1efe875f5fd983cd50231539923d03a3e6835078c5",
+      "duration_ms": 335.0,
+      "peak_dbfs": -12.0,
+      "rms_dbfs": -23.307,
+      "dc_offset": [
+        1.7707027606110075e-06,
+        1.7972727913168532e-06
+      ],
+      "energy_above_8khz_ratio": 5.496354997277594e-09,
+      "first_last_sample_zero": true,
+      "clipped_samples": 0
+    },
+    {
+      "file": "voxsyl-deactivate-v2-warm.wav",
+      "sha256": "61c45102005e295b2c66c33a7ddd34771bc34767db20d35749df3c95e2c9a7cd",
+      "duration_ms": 305.0,
+      "peak_dbfs": -12.0,
+      "rms_dbfs": -24.164,
+      "dc_offset": [
+        -1.0214216722165301e-07,
+        -1.1464937137124316e-07
+      ],
+      "energy_above_8khz_ratio": 6.80814508550274e-09,
+      "first_last_sample_zero": true,
+      "clipped_samples": 0
+    },
+    {
+      "file": "voxsyl-switch-pair-v2-warm.wav",
+      "sha256": "2ce4eff92945aa5a7736534dc3f0a96664721eb77cbe3ed3d869145957a158e1",
+      "duration_ms": 1540.0,
+      "peak_dbfs": -12.0,
+      "rms_dbfs": -27.508,
+      "dc_offset": [
+        3.649558855857684e-07,
+        3.682586537811147e-07
+      ],
+      "energy_above_8khz_ratio": 6.056466873866622e-09,
+      "first_last_sample_zero": true,
+      "clipped_samples": 0
+    }
+  ],
+  "verification": "Signal and file checks only; user audition and native integration pending."
+}

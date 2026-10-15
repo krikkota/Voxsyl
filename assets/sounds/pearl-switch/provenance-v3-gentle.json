@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "version": "pearl-switch-v3-gentle",
+  "created": "2026-10-14",
+  "project": "Voxsyl",
+  "status": "selected_by_user_integrated_in_native_prototype_not_live_validated",
+  "feedback": "User likes Warm v2 and requests a little more kindness. Retains the same notes and motif; softer upper harmonics, slower onset and a slightly warmer tail.",
+  "source": "Original procedural synthesis authored in this project conversation",
+  "generator": "generate_gentle.py",
+  "generator_sha256": "25562d49be891d9f0491bb4e4c53d1fee33acf20be237c91fb8ca9ef58577fa0",
+  "helper": "generate.py (WAV writer, sample rate and smoothstep only)",
+  "helper_sha256": "c0b02a903e3136465c4592108da57a45871cca03a6efc63a870f141bbaddcfae",
+  "generation_dependencies": {
+    "python": "3",
+    "numpy": "2.3.5"
+  },
+  "external_samples": [],
+  "third_party_audio": false,
+  "format": {
+    "container": "WAV",
+    "encoding": "PCM signed 16-bit little-endian",
+    "sample_rate": 48000,
+    "channels": 2
+  },
+  "uniqueness": "Designed from scratch for Voxsyl; global acoustic uniqueness is not guaranteed.",
+  "own_asset_license": "Pending the project's own-code and asset license decision; no external audio license applies.",
+  "files": [
+    {
+      "file": "voxsyl-activate-v3-gentle.wav",
+      "sha256": "fd585658ff4fae4d077c0107b56bef801a779143aa1a087faa0acf6723f17f9a",
+      "duration_ms": 350.0,
+      "peak_dbfs": -12.0,
+      "rms_dbfs": -23.555,
+      "dc_offset": [
+        -6.212506975446429e-07,
+        -6.739298502604167e-07
+      ],
+      "energy_above_8khz_ratio": 5.807724731187446e-09,
+      "first_last_sample_zero": true,
+      "clipped_samples": 0
+    },
+    {
+      "file": "voxsyl-deactivate-v3-gentle.wav",
+      "sha256": "238ac4370883270695e4b0e79bc78f2858a22c0aa13742f888d6b793614d0a05",
+      "duration_ms": 320.0,
+      "peak_dbfs": -12.0,
+      "rms_dbfs": -24.305,
+      "dc_offset": [
+        -4.3710072835286455e-08,
+        -5.7617823282877605e-08
+      ],
+      "energy_above_8khz_ratio": 6.878442295070143e-09,
+      "first_last_sample_zero": true,
+      "clipped_samples": 0
+    },
+    {
+      "file": "voxsyl-switch-pair-v3-gentle.wav",
+      "sha256": "6d3d7d01fd9558807e5f832d4bd738fbdf9bfefc3076a580e8f6d54d19a843e6",
+      "duration_ms": 1570.0,
+      "peak_dbfs": -12.0,
+      "rms_dbfs": -27.595,
+      "dc_offset": [
+        -1.4740443786491507e-07,
+        -1.6198289875265392e-07
+      ],
+      "energy_above_8khz_ratio": 6.273138060987152e-09,
+      "first_last_sample_zero": true,
+      "clipped_samples": 0
+    }
+  ],
+  "verification": "Signal and file checks completed; pair approved by user. Selected cues are bundled and wired in the native prototype; live microphone timing, volume and speaker contamination are not yet validated.",
+  "approved": {
+    "date": "2026-10-14",
+    "user_reply": "ладно пойдет оставляем"
+  }
+}
